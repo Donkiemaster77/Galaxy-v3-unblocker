@@ -1,12 +1,9 @@
 let score = 0;
+let clickMultiplier = 1; // Initial multiplier for clicks
 let upgrade1Cost = 1;
 let upgrade2Cost = 100;
 let upgrade3Cost = 10000;
 let upgrade4Cost = 1000000;
-let upgrade1Multiplier = 1;
-let upgrade2Multiplier = 10;
-let upgrade3Multiplier = 100;
-let upgrade4Multiplier = 1000;
 
 const scoreElement = document.getElementById('score');
 const clickerButton = document.getElementById('clicker-btn');
@@ -26,7 +23,7 @@ function updateScore() {
 
 // Handle the clicking logic
 clickerButton.addEventListener('click', () => {
-    score += upgrade1Multiplier;  // Increase score based on upgrades
+    score += clickMultiplier;  // Increase score based on the current click multiplier
     updateScore();
 });
 
@@ -34,8 +31,8 @@ clickerButton.addEventListener('click', () => {
 buyUpgrade1Button.addEventListener('click', () => {
     if (score >= upgrade1Cost) {
         score -= upgrade1Cost;
-        upgrade1Multiplier += 1;
-        upgrade1Cost = Math.floor(upgrade1Cost * 1.5);
+        clickMultiplier += 1;  // Increase the click multiplier by 1
+        upgrade1Cost = Math.floor(upgrade1Cost * 1.5); // Increase the cost of Upgrade 1
         upgrade1CostElement.textContent = upgrade1Cost;
         updateScore();
     }
@@ -45,8 +42,8 @@ buyUpgrade1Button.addEventListener('click', () => {
 buyUpgrade2Button.addEventListener('click', () => {
     if (score >= upgrade2Cost) {
         score -= upgrade2Cost;
-        upgrade2Multiplier += 10;
-        upgrade2Cost = Math.floor(upgrade2Cost * 1.5);
+        clickMultiplier += 10;  // Increase the click multiplier by 10
+        upgrade2Cost = Math.floor(upgrade2Cost * 1.5); // Increase the cost of Upgrade 2
         upgrade2CostElement.textContent = upgrade2Cost;
         updateScore();
     }
@@ -56,8 +53,8 @@ buyUpgrade2Button.addEventListener('click', () => {
 buyUpgrade3Button.addEventListener('click', () => {
     if (score >= upgrade3Cost) {
         score -= upgrade3Cost;
-        upgrade3Multiplier += 100;
-        upgrade3Cost = Math.floor(upgrade3Cost * 1.5);
+        clickMultiplier += 100;  // Increase the click multiplier by 100
+        upgrade3Cost = Math.floor(upgrade3Cost * 1.5); // Increase the cost of Upgrade 3
         upgrade3CostElement.textContent = upgrade3Cost;
         updateScore();
     }
@@ -67,9 +64,10 @@ buyUpgrade3Button.addEventListener('click', () => {
 buyUpgrade4Button.addEventListener('click', () => {
     if (score >= upgrade4Cost) {
         score -= upgrade4Cost;
-        upgrade4Multiplier += 1000;
-        upgrade4Cost = Math.floor(upgrade4Cost * 1.5);
+        clickMultiplier += 1000;  // Increase the click multiplier by 1000
+        upgrade4Cost = Math.floor(upgrade4Cost * 1.5); // Increase the cost of Upgrade 4
         upgrade4CostElement.textContent = upgrade4Cost;
         updateScore();
     }
 });
+
